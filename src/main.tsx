@@ -14,6 +14,7 @@ import './styles/cart.css';
 import './styles/profile.css';
 import './styles/modal.css';
 import './styles/loader.css';
+import './styles/toast.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
