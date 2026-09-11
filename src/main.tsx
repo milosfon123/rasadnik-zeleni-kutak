@@ -6,6 +6,7 @@ import './styles/variables.css';
 import './styles/components.css';
 import './styles/auth.css';
 import './styles/home.css';
+import './styles/catalog.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
