@@ -5,11 +5,15 @@ import { InputField } from '../components/InputField';
 import { useApp } from '../context/AppContext';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Loader } from '../components/Loader';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { Plant } from '../types/plant';
 
 export const Catalog: React.FC = () => {
   useDocumentTitle('Katalog Biljaka');
   const { addToCart } = useApp();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category');
 
   const [plants, setPlants] = useState<Plant[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -24,6 +28,13 @@ export const Catalog: React.FC = () => {
       setIsLoading(false);
     });
   }, []);
+
+  // Automatsko postavljanje kategorije ako je stigla preko URL-a sa Home strane
+  useEffect(() => {
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   const categories = ['sve', ...Array.from(new Set(plants.map((p) => p.category)))];
 
@@ -48,7 +59,7 @@ export const Catalog: React.FC = () => {
     if (sortBy === 'popular') {
       return (b.isPopular ? 1 : 0) - (a.isPopular ? 1 : 0);
     }
-    return 0; // Podrazumevani redosled
+    return 0;
   });
 
   return (
@@ -116,7 +127,15 @@ export const Catalog: React.FC = () => {
       ) : sortedPlants.length > 0 ? (
         <div className="plants-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
           {sortedPlants.map((plant) => (
-            <PlantCard key={plant.id} plant={plant} onAddToCart={addToCart} />
+            <div
+              key={plant.id}
+              onClick={() => navigate(`/katalog/${plant.id}`)}
+              style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-4px)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
+            >
+              <PlantCard plant={plant} onAddToCart={addToCart} />
+            </div>
           ))}
         </div>
       ) : (

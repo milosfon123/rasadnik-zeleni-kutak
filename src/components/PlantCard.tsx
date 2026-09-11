@@ -2,6 +2,8 @@ import React from 'react';
 import type { Plant } from '../types/plant';
 import { PlantModel } from '../models/PlantModel';
 import { Button } from './Button';
+import { useApp } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 interface PlantCardProps {
   plant: Plant;
@@ -11,6 +13,8 @@ interface PlantCardProps {
 
 export const PlantCard: React.FC<PlantCardProps> = ({ plant, onAddToCart, onSelect }) => {
   const model = new PlantModel(plant);
+  const { user } = useApp();
+  const navigate = useNavigate();
 
   return (
     <div className="plant-card" onClick={() => onSelect && onSelect(plant.id)}>
@@ -37,16 +41,30 @@ export const PlantCard: React.FC<PlantCardProps> = ({ plant, onAddToCart, onSele
               <span className="price-current">{plant.price} RSD</span>
             )}
           </div>
+          
           {onAddToCart && (
-            <Button
-              variant="primary"
-              onClick={(e) => {
-                e.stopPropagation();
-                onAddToCart(plant);
-              }}
-            >
-              Dodaj 🛒
-            </Button>
+            user ? (
+              <Button
+                variant="primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAddToCart(plant);
+                }}
+              >
+                Dodaj 🛒
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate('/prijava');
+                }}
+                style={{ fontSize: '0.8rem', backgroundColor: '#d97706', color: 'white' }}
+              >
+                Uloguj se za kupovinu 🔒
+              </Button>
+            )
           )}
         </div>
       </div>

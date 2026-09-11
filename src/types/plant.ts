@@ -1,4 +1,4 @@
-export type Category = 'sobne' | 'spoljasnje' | 'voce' | 'saksije';
+export type Category = 'ukrasno' | 'zacinsko' | 'vocne';
 export type LightRequirement = 'direktno' | 'indirektno' | 'sena';
 export type WaterRequirement = 'retko' | 'umereno' | 'cesto';
 

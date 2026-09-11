@@ -1,66 +1,39 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { InputField } from '../components/InputField';
 import { Button } from '../components/Button';
-import { Toast } from '../components/Toast';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-  
   const { login } = useApp();
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    if (!email || !password) {
-      setToast({ message: 'Sva polja su obavezna!', type: 'error' });
-      return false;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setToast({ message: 'Unesite validnu email adresu!', type: 'error' });
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (!email || !password) return;
 
-    // Prijavljujemo korisnika bez polja 'role'
-    login({ id: '1', name: 'Petar Petrović', email });
-    setToast({ message: 'Uspešna prijava!', type: 'success' });
+    // Dinamički uzimamo ime iz email-a (npr. milos iz milos@gmail.com) ili prosleđujemo nalog
+    const userName = email.split('@')[0];
+    login({ id: '1', name: userName.charAt(0).toUpperCase() + userName.slice(1), email });
     
-    setTimeout(() => {
-      navigate('/katalog');
-    }, 1000);
+    navigate('/profil');
   };
 
   return (
-    <div className="form-container" style={{ maxWidth: '400px', margin: '0 auto', padding: '2rem' }}>
-      <h2>Prijava 🔐</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <InputField 
-          label="Email adresa" 
-          type="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-        />
-        <InputField 
-          label="Lozinka" 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-        />
-        <Button variant="primary" type="submit">Prijavi se</Button>
+    <div className="form-container" style={{ maxWidth: '400px', textAlign: 'center' }}>
+      <h2>Prijava naloga</h2>
+      <p>Dobrodošli nazad! Prijavite se za pristup.</p>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+        <InputField label="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <InputField label="Lozinka" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button type="submit">Prijavi se</Button>
       </form>
-
-      {toast && (
-        <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
-      )}
+      
+      <p style={{ marginTop: '1.5rem' }}>
+        Nemate nalog? <Link to="/registracija" style={{ color: '#2c5e3b', fontWeight: 'bold' }}>Registruj se!</Link>
+      </p>
     </div>
   );
 };
