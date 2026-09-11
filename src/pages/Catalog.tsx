@@ -4,6 +4,7 @@ import { PlantCard } from '../components/PlantCard';
 import { InputField } from '../components/InputField';
 import { useApp } from '../context/AppContext';
 import type { Category } from '../types/plant';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export const Catalog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +19,7 @@ export const Catalog: React.FC = () => {
     const matchesCategory = selectedCategory === 'sve' || plant.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
+useDocumentTitle('Katalog Biljaka');
   return (
     <div className="catalog-container">
       <h2>Katalog Biljaka 🌿</h2>
