@@ -1,0 +1,45 @@
+.profile-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid #e5e7eb;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--green-card);
+  border-radius: var(--border-radius);
+}
+
+.profile-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--green-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profile-details h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.profile-details p {
+  margin: 0.2rem 0;
+  color: var(--text-dark);
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -11,6 +11,7 @@ import './styles/plant-detail.css';
 import './styles/plan-sadnje.css';
 import './styles/favorites.css';
 import './styles/cart.css';
+import './styles/profile.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

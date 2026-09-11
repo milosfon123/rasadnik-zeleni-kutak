@@ -7,6 +7,7 @@ import { PlantDetail } from './pages/PlantDetail';
 import { PlanSadnje } from './pages/PlanSadnje';
 import { Favorites } from './pages/Favorites';
 import { Cart } from './pages/Cart';
+import { Profile } from './pages/Profile';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/plan-sadnje" element={<PlanSadnje />} />
               <Route path="/omiljene" element={<Favorites />} />
               <Route path="/korpa" element={<Cart />} />
+              <Route path="/profil" element={<Profile />} />
               <Route path="/prijava" element={<Login />} />
               <Route path="/registracija" element={<Register />} />
             </Routes>
