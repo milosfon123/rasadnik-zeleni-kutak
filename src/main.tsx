@@ -8,6 +8,7 @@ import './styles/auth.css';
 import './styles/home.css';
 import './styles/catalog.css';
 import './styles/plant-detail.css';
+import './styles/plan-sadnje.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

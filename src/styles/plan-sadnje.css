@@ -1,0 +1,33 @@
+.plan-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid #e5e7eb;
+}
+
+.plan-form {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.plan-results {
+  background-color: var(--green-card);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border-left: 5px solid var(--green-primary);
+}
+
+.plan-results h3 {
+  margin-top: 0;
+  color: var(--green-dark);
+}
