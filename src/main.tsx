@@ -13,6 +13,7 @@ import './styles/favorites.css';
 import './styles/cart.css';
 import './styles/profile.css';
 import './styles/modal.css';
+import './styles/loader.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
