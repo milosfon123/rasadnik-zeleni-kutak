@@ -12,6 +12,7 @@ import './styles/plan-sadnje.css';
 import './styles/favorites.css';
 import './styles/cart.css';
 import './styles/profile.css';
+import './styles/modal.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
