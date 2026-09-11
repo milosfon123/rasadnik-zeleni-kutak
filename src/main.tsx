@@ -10,6 +10,7 @@ import './styles/catalog.css';
 import './styles/plant-detail.css';
 import './styles/plan-sadnje.css';
 import './styles/favorites.css';
+import './styles/cart.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

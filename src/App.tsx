@@ -5,6 +5,8 @@ import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
 import { PlantDetail } from './pages/PlantDetail';
 import { PlanSadnje } from './pages/PlanSadnje';
+import { Favorites } from './pages/Favorites';
+import { Cart } from './pages/Cart';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 
@@ -20,6 +22,8 @@ function App() {
               <Route path="/katalog" element={<Catalog />} />
               <Route path="/katalog/:id" element={<PlantDetail />} />
               <Route path="/plan-sadnje" element={<PlanSadnje />} />
+              <Route path="/omiljene" element={<Favorites />} />
+              <Route path="/korpa" element={<Cart />} />
               <Route path="/prijava" element={<Login />} />
               <Route path="/registracija" element={<Register />} />
             </Routes>
